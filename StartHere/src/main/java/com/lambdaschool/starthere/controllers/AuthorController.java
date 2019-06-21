@@ -18,7 +18,7 @@ public class AuthorController {
     @Autowired
     AuthorService authorService;
 
-    @PreAuthorize("hasAuthority('roleUser')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @ApiOperation(value = "returns all the authors", response = Author.class, responseContainer = "List")
     @GetMapping("/authors")
     public ResponseEntity<?> getAuthors(){
