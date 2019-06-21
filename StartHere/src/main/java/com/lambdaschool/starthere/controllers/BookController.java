@@ -33,7 +33,7 @@ public class BookController {
                             "Default sort order is ascending. " +
                             "Multiple sort criteria are supported.")})
     @GetMapping("/books")
-    public ResponseEntity<?> getBooks(@PageableDefault(page = 0, size = 3) Pageable pageable) {
+    public ResponseEntity<?> getBooks(@PageableDefault(page = 0, size = 10) Pageable pageable) {
         ArrayList<Book> books = bookService.findAll(pageable);
         return new ResponseEntity<>(books, HttpStatus.OK);
     }

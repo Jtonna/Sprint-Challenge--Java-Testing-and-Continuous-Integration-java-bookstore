@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface BookService {
 
     ArrayList<Book> findAll(Pageable pageable);
-    void update(long id, Book book);
+    Book update(long id, Book book);
     void delete(long id);
     void setBookAuthor(long bookid, long authorid);
 
