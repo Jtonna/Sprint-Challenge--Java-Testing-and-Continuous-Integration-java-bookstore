@@ -20,7 +20,13 @@ public class BookController {
         ArrayList<Book> books = bookService.findAll();
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
-//    @PutMapping
+
+    @PutMapping("/data/books/{id}")
+    public ResponseEntity<?> updateBook(@PathVariable("id") long id, @RequestBody Book book) {
+        bookService.update(id, book);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 //    @PostMapping
 //    @DeleteMapping
 }
