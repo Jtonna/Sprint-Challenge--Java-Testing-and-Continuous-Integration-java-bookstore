@@ -1,6 +1,5 @@
 package com.lambdaschool.starthere.services;
 
-import com.lambdaschool.starthere.models.Quote;
 import com.lambdaschool.starthere.models.User;
 import com.lambdaschool.starthere.models.UserRoles;
 import com.lambdaschool.starthere.repository.RoleRepository;
@@ -79,11 +78,6 @@ public class UserServiceImpl implements UserDetailsService, UserService
         }
         newUser.setUserRoles(newRoles);
 
-        for (Quote q : user.getQuotes())
-        {
-            newUser.getQuotes().add(new Quote(q.getQuote(), newUser));
-        }
-
         return userrepos.save(newUser);
     }
 
@@ -123,13 +117,6 @@ public class UserServiceImpl implements UserDetailsService, UserService
                     }
                 }
 
-                if (user.getQuotes().size() > 0)
-                {
-                    for (Quote q : user.getQuotes())
-                    {
-                        currentUser.getQuotes().add(new Quote(q.getQuote(), currentUser));
-                    }
-                }
 
                 return userrepos.save(currentUser);
             } else
