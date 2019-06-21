@@ -1,7 +1,12 @@
 package com.lambdaschool.starthere.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Author {
 
@@ -10,6 +15,10 @@ public class Author {
     private long authorid;
 
     private String firstname, lastname;
+
+    @ManyToMany(mappedBy = "authors")
+    @JsonIgnoreProperties("authors")
+    private List<Book> books = new ArrayList<>();
 
     public Author() {
     }
@@ -41,5 +50,15 @@ public class Author {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    // for  many to many
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }
