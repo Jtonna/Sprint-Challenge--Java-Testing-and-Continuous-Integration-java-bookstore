@@ -6,5 +6,5 @@ import java.util.ArrayList;
 
 public interface AuthorService {
 
-    ArrayList<Author> findALL();
+    ArrayList<Author> findAll();
 }
