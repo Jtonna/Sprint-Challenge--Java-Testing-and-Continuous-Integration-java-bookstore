@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "book")
-public class Book {
+public class Book extends Auditable{
 
     @Id
     @GeneratedValue
