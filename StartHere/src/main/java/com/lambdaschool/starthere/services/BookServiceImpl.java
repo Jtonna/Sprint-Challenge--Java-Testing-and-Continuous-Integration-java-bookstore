@@ -3,6 +3,7 @@ package com.lambdaschool.starthere.services;
 import com.lambdaschool.starthere.exceptions.ResourceNotFoundException;
 import com.lambdaschool.starthere.models.Author;
 import com.lambdaschool.starthere.models.Book;
+import com.lambdaschool.starthere.repository.AuthorRepository;
 import com.lambdaschool.starthere.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    AuthorRepository authorRepository;
 
     // finds all books
 
@@ -63,4 +67,19 @@ public class BookServiceImpl implements BookService {
         }
     }
 
+    // set book author
+
+
+    @Override
+    public void setBookAuthor(long bookid, long authorid) {
+        Book book = bookRepository.findById(bookid)
+                .orElseThrow(() -> new ResourceNotFoundException("Cannot find book with the id: " + bookid));
+        Author author = authorRepository.findById(authorid)
+                .orElseThrow(() -> new ResourceNotFoundException("Cannot find author with the id: " + authorid));
+        if (book != null || author != null) {
+            book.getAuthors().add(author);
+        }
+
+        bookRepository.save(book);
+    }
 }
