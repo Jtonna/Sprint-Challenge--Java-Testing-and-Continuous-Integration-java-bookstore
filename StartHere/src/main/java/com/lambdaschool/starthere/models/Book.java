@@ -1,7 +1,14 @@
 package com.lambdaschool.starthere.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Book {
 
@@ -12,6 +19,13 @@ public class Book {
     private String booktitle, isbn;
 
     private int copy;
+
+    @ManyToMany
+    @JoinTable(name = "bookauthors",
+            joinColumns = {@JoinColumn(name = "bookid")},
+            inverseJoinColumns = {@JoinColumn(name = "authorid")})
+    @JsonIgnoreProperties("bookauthors")
+    private List<Author> authors = new ArrayList<>();
 
     public Book() {
     }
@@ -52,5 +66,15 @@ public class Book {
 
     public void setCopy(int copy) {
         this.copy = copy;
+    }
+
+    // many to many
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
     }
 }
