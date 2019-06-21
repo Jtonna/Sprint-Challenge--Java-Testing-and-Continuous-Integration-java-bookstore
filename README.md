@@ -21,16 +21,18 @@ Create a REST API server to store and read data from a PostgreSQL Database (the 
 
 * book
   * bookid - long primary key
-  * booktitle - String the title of the book
-  * ISBN - String the ISBN number of the book
-  * copy - Int the year the book was published (copyright date)
+  * booktitle - String the title of the book 
+  * ISBN - String the ISBN number of the book 
+  * copy - Int the year the book was published (copyright date) 
   
 * authors
-  * authorid - long primary key
-  * lastname - String last name of the author
-  * firstname - String first name of the author
+  * authorid - long primary key 
+  * lastname - String last name of the author 
+  * firstname - String first name of the author 
 
 There is a many to many relationship between authors and books. A book may have many authors while an author may write many books.
+
+-- im here
 
 * Add audit fields to both tables.
 

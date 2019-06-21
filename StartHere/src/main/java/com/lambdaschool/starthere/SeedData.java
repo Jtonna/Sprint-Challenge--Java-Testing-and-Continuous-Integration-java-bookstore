@@ -27,19 +27,19 @@ public class SeedData implements CommandLineRunner
     @Override
     public void run(String[] args) throws Exception
     {
-        Role r1 = new Role("admin");
-        Role r2 = new Role("user");
-        Role r3 = new Role("data");
+        Role roleAdmin = new Role("admin");
+        Role roleData = new Role("data");
+        Role roleUser = new Role("user");
 
-        roleService.save(r1);
-        roleService.save(r2);
-        roleService.save(r3);
+        roleService.save(roleAdmin);
+        roleService.save(roleData);
+        roleService.save(roleUser);
 
-        // admin, data, user
+        // , data, user
         ArrayList<UserRoles> admins = new ArrayList<>();
-        admins.add(new UserRoles(new User(), r1));
-        admins.add(new UserRoles(new User(), r2));
-        admins.add(new UserRoles(new User(), r3));
+        admins.add(new UserRoles(new User(), roleAdmin));
+        admins.add(new UserRoles(new User(), roleData));
+        admins.add(new UserRoles(new User(), roleUser));
         User u1 = new User("admin", "password", admins);
         u1.getQuotes().add(new Quote("A creative man is motivated by the desire to achieve, not by the desire to beat others", u1));
         u1.getQuotes().add(new Quote("The question isn't who is going to let me; it's who is going to stop me.", u1));
@@ -47,14 +47,14 @@ public class SeedData implements CommandLineRunner
 
         // data, user
         ArrayList<UserRoles> datas = new ArrayList<>();
-        datas.add(new UserRoles(new User(), r3));
-        datas.add(new UserRoles(new User(), r2));
+        datas.add(new UserRoles(new User(), roleData));
+        datas.add(new UserRoles(new User(), roleUser));
         User u2 = new User("cinnamon", "1234567", datas);
         userService.save(u2);
 
         // user
         ArrayList<UserRoles> users = new ArrayList<>();
-        users.add(new UserRoles(new User(), r2));
+        users.add(new UserRoles(new User(), roleData));
         User u3 = new User("barnbarn", "ILuvM4th!", users);
         u3.getQuotes().add(new Quote("Live long and prosper", u3));
         u3.getQuotes().add(new Quote("The enemy of my enemy is the enemy I kill last", u3));
@@ -62,12 +62,12 @@ public class SeedData implements CommandLineRunner
         userService.save(u3);
 
         users = new ArrayList<>();
-        users.add(new UserRoles(new User(), r2));
+        users.add(new UserRoles(new User(), roleData));
         User u4 = new User("Bob", "password", users);
         userService.save(u4);
 
         users = new ArrayList<>();
-        users.add(new UserRoles(new User(), r2));
+        users.add(new UserRoles(new User(), roleUser));
         User u5 = new User("Jane", "password", users);
         userService.save(u5);
     }
