@@ -69,7 +69,6 @@ public class BookServiceImpl implements BookService {
 
     // set book author
 
-
     @Override
     public void setBookAuthor(long bookid, long authorid) {
         Book book = bookRepository.findById(bookid)

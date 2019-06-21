@@ -2,12 +2,12 @@ package com.lambdaschool.starthere.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "author")
 public class Author {
 
     @Id
@@ -16,7 +16,10 @@ public class Author {
 
     private String firstname, lastname;
 
-    @ManyToMany(mappedBy = "authors")
+    @ManyToMany
+    @JoinTable(name = "wrote",
+            joinColumns = {@JoinColumn(name = "authorid")},
+            inverseJoinColumns = {@JoinColumn(name = "bookid")})
     @JsonIgnoreProperties("authors")
     private List<Book> books = new ArrayList<>();
 
